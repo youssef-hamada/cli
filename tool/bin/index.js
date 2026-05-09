@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+const chalk = require("chalk");
+const arg = require("arg");
 try {
-  const arg = require("arg");
-
   const args = arg({
     "--start": Boolean,
     "--build": Boolean,
@@ -11,11 +11,11 @@ try {
   });
 
   if (args["--start"]) {
-    console.log("Starting the development server...");
+    console.log(chalk.bgCyanBright("Starting the tool..."));
   }
 } catch (error) {
-  console.error("Error parsing arguments:", error.message);
-
+  console.error(chalk.yellow(error.message));
+  console.log();
   usage();
 }
 
