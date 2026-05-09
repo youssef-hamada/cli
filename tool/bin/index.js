@@ -10,13 +10,18 @@ try {
     "-b": "--build",
   });
 
-  console.log(args);
-} catch (error) {
-  if (error.code === "MODULE_NOT_FOUND") {
-    console.error(
-      'Error: Missing dependency "arg". Please run: npm install arg',
-    );
-    process.exit(1);
+  if (args["--start"]) {
+    console.log("Starting the development server...");
   }
-  throw error;
+} catch (error) {
+  console.error("Error parsing arguments:", error.message);
+
+  usage();
+}
+
+function usage() {
+  console.log(`
+        tool [CMD]
+        --start\Starts the tool
+        --build\builds it`);
 }
