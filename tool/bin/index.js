@@ -2,6 +2,9 @@
 
 const chalk = require("chalk");
 const arg = require("arg");
+const getConfig = require("../src/config/config-mgr");
+const start = require("../src/commands/start");
+
 try {
   const args = arg({
     "--start": Boolean,
@@ -11,7 +14,8 @@ try {
   });
 
   if (args["--start"]) {
-    console.log(chalk.bgCyanBright("Starting the tool..."));
+    const config = getConfig();
+    start(config);
   }
 } catch (error) {
   console.error(chalk.yellow(error.message));
